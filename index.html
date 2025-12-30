@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Treadmill Control</title>
+		<link rel="stylesheet" href="./main.css" />
+	</head>
+	<body class="has-not-connected">
+		<div id="connection-screen">
+			<p>Connect to the treadmill.</p>
+			<button id="connect-button">Open Menu</button>
+		</div>
+		<div id="stats-screen">
+			<div class="stat" id="speed" style="grid-area: speed;">
+				<div class="stat-name">Current Speed</div>
+				<div class="stat-value"></div>
+			</div>
+			<div class="stat" id="distance" style="grid-area: distance;">
+				<div class="stat-name">Distance Travelled</div>
+				<div class="stat-value"></div>
+			</div>
+			<div class="stat" id="calories" style="grid-area: calories;">
+				<div class="stat-name">Calories Burned</div>
+				<div class="stat-value"></div>
+			</div>
+			<div class="stat" id="duration" style="grid-area: duration;">
+				<div class="stat-name">Exercise Duration</div>
+				<div class="stat-value"></div>
+			</div>
+			<div id="speed-adjustment" style="grid-area: speed-adjustment;">
+				<button id="speed-decrease">-</button>
+				<div id="speed-adjustment-value"></div>
+				<button id="speed-increase">+</button>
+			</div>
+			<button id="start-stop-button" style="grid-area: start-stop;"></button>
+			<button id="end-exercise-button" style="grid-area: end-exercise;">End</button>
+		</div>
+		
+		<script type="module" src="./js/UI.js"></script>
+	</body>
+</html>

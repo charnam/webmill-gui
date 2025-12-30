@@ -1,0 +1,162 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+body {
+	background: linear-gradient(to bottom, gray, white, gray);
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: Manrope;
+	user-select: none;
+}
+
+@keyframes flash {
+	0% {
+		opacity: 0.9;
+	}
+	50% {
+		opacity: 0.3;
+	}
+	100% {
+		opacity: 0.9;
+	}
+}
+
+#connection-screen {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: linear-gradient(to bottom, #0005, #0002);
+	backdrop-filter: blur(10px);
+	pointer-events: none;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	font-size: 5vw;
+	
+	opacity: 0;
+	pointer-events: none;
+	z-index: 100;
+	
+	transition: opacity 0.5s ease-in-out;
+}
+
+body.has-not-connected #connection-screen {
+	opacity: 1;
+	pointer-events: unset;
+}
+
+#stats-screen {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 33vmin 33vmin 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	
+	grid-template-areas:
+		"duration					distance					end-exercise"
+		"calories					speed						."
+		"speed-adjustment			speed-adjustment			start-stop";
+}
+
+#stats-screen .stat {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 10vw;
+	font-size: 5vmin;
+}
+
+#stats-screen .stat-name {
+	text-transform: uppercase;
+	font-size: 2vmin;
+	color: #444;
+	text-shadow: 0 0.1vmin 0.1vmin #fff9;
+}
+#stats-screen .stat-value {
+	font-weight: bold;
+}
+
+button#start-stop-button {
+	width: 30vmin;
+	height: fit-content;
+	justify-self: end;
+	align-self: end;
+}
+button#end-exercise-button {
+	width: fit-content;
+	height: fit-content;
+	justify-self: end;
+	align-self: start;
+}
+
+#speed-adjustment, #end-exercise-button {
+	transition: opacity 0.5s ease-in-out;
+}
+
+button#end-exercise-button:disabled,
+#speed-adjustment.disabled {
+	opacity: 0;
+	pointer-events: none;
+}
+
+button {
+	margin: 5vmin;
+	font-size: 5vmin;
+	border: 0.4vmin solid gray;
+	border-radius: 1vmin;
+	padding: 1vmin 3vmin;
+	background: linear-gradient(to bottom, #fff, #ccc, #ccc9);
+	text-shadow: 0 0.5vmin 0.4vmin white;
+	box-shadow: 0 0.5vmin 1vmin #0007;
+	color: #000;
+}
+button:disabled {
+	opacity: 0.8;
+	text-shadow: none;
+}
+button:not(:disabled) {
+	cursor: pointer;
+}
+button:not(:disabled):hover {
+	filter: brightness(1.1);
+}
+button:not(:disabled):active {
+	filter: brightness(0.7);
+	transform: translateY(1vmin);
+	box-shadow: none;
+}
+
+div#speed-adjustment {
+	align-self: end;
+	display: flex;
+	margin: 5vmin;
+	align-items: center;
+}
+#speed-decrease, #speed-increase {
+	margin: 1vmin;
+}
+#speed-adjustment-value {
+	margin: 3vmin;
+	font-size: 4vmin;
+	font-style: italic;
+	color: #111;
+	text-shadow: 0 0.1vmin 1vmin #fff5, 0 0.1vmin #fff7;
+	font-weight: 600;
+	width: 8ch;
+	text-align: center;
+}
+
+#speed-adjustment-value.changing {
+	animation: flash 0.5s step-start infinite;
+}
+#speed-adjustment-value.updating {
+	animation: flash 0.8s ease-in-out infinite;
+}
