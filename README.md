@@ -1,13 +1,23 @@
 # Webmill
-This is a graphical web application for controlling a treadmill (specifically, the PitPat line of treadmills) with a web browser, over Web Bluetooth.
+This is a graphical application and JavaScript library for controlling a treadmill (specifically, the PitPat line of treadmills) over Web Bluetooth. This repository contains an embeddable Electron UI and the source code for a browser-based HTML application.
 
-## How do I use the web interface?
+## How do I use the interface in a browser?
 1. Ensure your browser supports Web Bluetooth
     - Currently supported browsers include modern versions of Google Chrome, Chromium, and Brave
     - **You will need to visit `chrome://flags` and enable Web Bluetooth to connect to your treadmill.**
 3. Clone this repository using `git clone`
 4. Run an HTTP server at the root. You can `cd` into the newly-cloned directory, and run `python3 -m http.server` to start a basic HTTP server.
 5. Visit `localhost` via whichever port was specified by your HTTP server.
+
+## How do I use the Desktop Fullscreen / Electron application?
+The Electron application is intended for use with an embedded system or touchscreen. It can be run on Windows, Linux, or even MacOS.
+
+1. Install [Node and NPM](https://nodejs.org/en/download/)
+2. Run `npm install -g electron` in your preferred Terminal app (can be Windows Command Prompt or PowerShell as well)
+3. Navigate / `cd` into the project directory after cloning it with `git clone`
+4. Run `electron .` to open the Electron application. Make sure to run this **after your treadmill has already been powered on.**
+
+If you are looking to use this in an embedded system, the [Cage compositor](https://github.com/cage-kiosk/cage) is worth researching.
 
 ## How do I use the JavaScript library?
 The file under `Treadmill.js` contains a clean, developer-friendly JavaScript library for interacting with the treadmill.
