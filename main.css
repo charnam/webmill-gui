@@ -50,6 +50,18 @@ body.has-not-connected #connection-screen {
 	pointer-events: unset;
 }
 
+#connection-screen > * {
+	display: none;
+}
+
+body.has-not-connected:not(.needs-to-connect) #connection-screen #connecting-screen {
+	display: contents;
+}
+
+body.has-not-connected.needs-to-connect #connection-screen #connect-screen {
+	display: contents;
+}
+
 #stats-screen {
 	position: fixed;
 	left: 0;

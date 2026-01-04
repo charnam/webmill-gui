@@ -45,7 +45,7 @@ class Treadmill {
 	
 	constructor(autoconnect = true) {
 		if(autoconnect) {
-			this.connect();
+			this.autoconnectComplete = this.connect();
 		}
 	}
 	
@@ -238,6 +238,7 @@ class Treadmill {
 			this.connected = false;
 			this.connecting = false;
 			this.mode = Treadmill.MODE_DISCONNECTED;
+			throw new Error("Bluetooth connection error occurred.");
 		}
 	}
 	

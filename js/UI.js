@@ -1,7 +1,6 @@
 import Treadmill from "./Connection/Treadmill.js";
 
-// Will attempt to autoconnect through Electron, if autoconnection fails then the user will be prompted to connect manually.
-const primaryTreadmill = new Treadmill();
+const primaryTreadmill = new Treadmill(false);
 
 const connectButton = document.getElementById("connect-button");
 const startStopButton = document.getElementById("start-stop-button");
@@ -18,7 +17,7 @@ const speedAdjustmentValueEl = document.getElementById("speed-adjustment-value")
 const speedAdjustmentSubtractEl = document.getElementById("speed-decrease");
 
 const speedMinimum = 0;
-const speedMaximum = 4;
+const speedMaximum = 6;
 
 let currentSpeed = 0.00;
 let currentSpeedIsChanging = false;
@@ -154,3 +153,11 @@ primaryTreadmill.onstatechange = onStateChange;
 connectButton.onclick = () => {
 	primaryTreadmill.connect();
 }
+
+// Will attempt to autoconnect through Electron, if autoconnection fails then the user will be prompted to connect manually.
+try {
+	await primaryTreadmill.connect();
+} catch(err) {
+	document.body.classList.add("needs-to-connect");
+}
+
